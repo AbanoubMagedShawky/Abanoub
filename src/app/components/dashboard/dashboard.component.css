@@ -1,0 +1,154 @@
+/* Main Styles */
+.dashboard-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card {
+  border: none;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  background: linear-gradient(145deg, #ffffff, #f5f7fa);
+}
+
+.card-header {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background: linear-gradient(145deg, #007bff, #0056b3);
+  padding: 1.5rem;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.total-amount {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: #007bff;
+  border-radius: 3px;
+}
+
+/* Table Styles */
+.table-container {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.table th {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  padding: 1rem;
+}
+
+.table td {
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+/* Status Badges */
+.status-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+}
+
+.badge-success {
+  background: linear-gradient(145deg, #28a745, #218838);
+  color: white;
+}
+
+.badge-danger {
+  background: linear-gradient(145deg, #dc3545, #c82333);
+  color: white;
+}
+
+.badge-secondary {
+  background: linear-gradient(145deg, #6c757d, #5a6268);
+  color: white;
+}
+
+/* Buttons */
+.action-button {
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  background: linear-gradient(145deg, #007bff, #0056b3);
+  border: none;
+  font-weight: 500;
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .dashboard-title {
+    font-size: 2rem;
+  }
+
+  .total-amount {
+    font-size: 2rem;
+  }
+
+  .table-container {
+    padding: 0.5rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.75rem;
+  }
+}
+
+/* Animation Styles */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.loading {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+  background-size: 1000px 100%;
+}

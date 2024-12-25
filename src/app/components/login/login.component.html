@@ -1,0 +1,61 @@
+<div class="login-container">
+  <div class="animated-background"></div>
+  <div class="login-card">
+    <div class="logo-container">
+      <div class="logo-circle">
+        <i class="fas fa-user"></i>
+      </div>
+    </div>
+    <h2 class="login-title">Welcome Back</h2>
+    <form (ngSubmit)="onLogin()" class="login-form">
+      <div class="form-group">
+        <div class="input-wrapper">
+          <i class="fas fa-envelope input-icon"></i>
+          <input
+            id="email"
+            name="email"
+            [(ngModel)]="email"
+            required
+            placeholder="Email Address"
+            type="email"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-wrapper">
+          <i class="fas fa-lock input-icon"></i>
+          <input
+            type="password"
+            id="password"
+            [(ngModel)]="password"
+            name="password"
+            class="form-control"
+            required
+            placeholder="Password"
+          />
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="login-btn"
+        [disabled]="isLoading"
+        [class.loading]="isLoading"
+      >
+        <span>{{ isLoading ? 'Logging in...' : 'Login' }}</span>
+      </button>
+      
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+    </form>
+    <div class="register-link">
+      <p>
+        New here? 
+        <button (click)="navigateToSign()" class="register-button">
+          Create Account
+        </button>
+      </p>
+    </div>
+  </div>
+</div>

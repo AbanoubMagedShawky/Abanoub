@@ -1,0 +1,66 @@
+/* تحسين الحواف والتباعد */
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card-body {
+  padding: 30px;
+}
+
+h1, h3 {
+  font-weight: bold;
+}
+
+h3 {
+  color: #007bff;
+}
+
+/* تباعد بين العناصر */
+.mt-4 {
+  margin-top: 30px;
+}
+
+.mb-4 {
+  margin-bottom: 30px;
+}
+
+/* تحسين تنسيق الجداول */
+.table {
+  border-radius: 10px;
+}
+
+.table th, .table td {
+  padding: 15px;
+  text-align: center;
+}
+
+.table-striped tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* تحسين الألوان */
+.badge-success {
+  background-color: #28a745;
+}
+
+.badge-warning {
+  background-color: #ffc107;
+}
+
+.badge-danger {
+  background-color: #dc3545;
+}
+
+button {
+  margin: 5px;
+}

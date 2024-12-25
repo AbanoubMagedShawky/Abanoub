@@ -1,0 +1,93 @@
+<div class="form-container" [@fadeSlideIn]>
+  <div class="bonus-form card">
+    <div class="card-header">
+      <h2>Create Bonus</h2>
+    </div>
+
+    <div class="card-body">
+      <!-- Success Message -->
+      <div *ngIf="successMessage" @fadeIn class="alert alert-success">
+        <i class="fas fa-check-circle me-2"></i>
+        {{ successMessage }}
+      </div>
+
+      <form [formGroup]="bonusForm" (ngSubmit)="onSubmit()">
+        
+          <label for="title">Title</label>
+          <input
+            id="title"
+            type="text"
+            class="form-control"
+            formControlName="title"
+            [class.is-invalid]="bonusForm.get('title')?.invalid && bonusForm.get('title')?.touched">
+          <div class="invalid-feedback">
+            {{ getFieldError('title') }}
+          </div>
+        
+
+      
+          <label for="reason">Reason</label>
+          <textarea
+            id="reason"
+            class="form-control"
+            formControlName="reason"
+            [class.is-invalid]="bonusForm.get('reason')?.invalid && bonusForm.get('reason')?.touched">
+          </textarea>
+          <div class="invalid-feedback">
+            {{ getFieldError('reason') }}
+          </div>
+        
+      
+          <label for="amount">Amount</label>
+          <div class="input-group">
+            <span class="input-group-text">$</span>
+            <input
+              id="amount"
+              type="number"
+              class="form-control"
+              formControlName="amount"
+              [class.is-invalid]="bonusForm.get('amount')?.invalid && bonusForm.get('amount')?.touched">
+          </div>
+          <div class="invalid-feedback">
+            {{ getFieldError('amount') }}
+          </div>
+       
+          <label for="userId">User ID</label>
+          <input
+            id="userId"
+            type="text"
+            class="form-control"
+            formControlName="userId"
+            [class.is-invalid]="bonusForm.get('userId')?.invalid && bonusForm.get('userId')?.touched">
+          <div class="invalid-feedback">
+            {{ getFieldError('userId') }}
+          </div>
+       
+          <label for="file">Supporting Document</label>
+          <div class="file-upload-wrapper">
+            <input
+              id="file"
+              type="file"
+              class="form-control"
+              (change)="onFileSelected($event)"
+              accept=".pdf,.doc,.docx,.jpg,.png">
+            <small class="text-muted">Accepted formats: PDF, DOC, DOCX, JPG, PNG</small>
+          </div>
+
+          <!-- File Preview -->
+          <div *ngIf="previewUrl" class="mt-2">
+            <img [src]="previewUrl" class="file-preview" alt="File preview">
+          </div>
+       
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!bonusForm.valid || isSubmitting || !selectedFile">
+            <span class="spinner-border spinner-border-sm me-2" *ngIf="isSubmitting"></span>
+            {{ isSubmitting ? 'Submitting...' : 'Submit Bonus Request' }}
+          </button>
+        
+      </form>
+    </div>
+  </div>
+</div>

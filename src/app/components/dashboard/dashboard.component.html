@@ -1,0 +1,60 @@
+<div class="container" @fadeIn>
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mt-4 mb-4 text-center text-primary dashboard-title">Dashboard</h1>
+      
+      <div class="card shadow-lg" [@cardHover]="cardState" 
+           (mouseenter)="onCardMouseEnter()" 
+           (mouseleave)="onCardMouseLeave()">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">Approved Bonuses Total</h4>
+        </div>
+        <div class="card-body text-center">
+          <h3 class="total-amount">{{ totalBonuses | currency }}</h3>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <h3 class="section-title">Processed Bonus Requests</h3>
+        <div class="table-responsive table-container">
+          <table class="table table-striped table-hover">
+            <thead class="table-dark">
+              <tr>
+                <th>Title</th>
+                <th>Reason</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Submission Date</th>
+                <th>Processing Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let request of bonusRequests" @tableRow>
+                <td>{{ request.title }}</td>
+                <td>{{ request.reason }}</td>
+                <td>{{ request.amount | currency }}</td>
+                <td>
+                  <span [class]="getStatusClass(request.status)"
+                        class="status-badge">
+                    {{ request.status }}
+                  </span>
+                </td>
+                <td>{{ request.submissionDate | date:'short' }}</td>
+                <td>{{ request.processedDate | date:'short' }}</td>
+                <td>
+                  <button
+                    *ngIf="request.status === 'approved'"
+                    class="btn btn-primary btn-sm action-button"
+                    (click)="initiatePayment(request._id)">
+                    Pay Now
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mt-4 mb-4 text-center text-primary">Pending Bonus Requests</h1>
+      
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th>Title</th>
+              <th>Reason</th>
+              <th>Amount</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let request of bonusRequests">
+              <td>{{ request.title }}</td>
+              <td>{{ request.reason }}</td>
+              <td>{{ request.amount | currency }}</td>
+              <td>
+                <button class="btn btn-success btn-sm me-2" (click)="openApprovalDialog(request, 'approved')">
+                  Approve
+                </button>
+                <button class="btn btn-danger btn-sm" (click)="openApprovalDialog(request, 'rejected')">
+                  Reject
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Approval Dialog -->
+<div class="modal" [class.show]="showDialog" [style.display]="showDialog ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ approvalDetails.status === 'approved' ? 'approve' : 'reject' }} Request</h5>
+        <button type="button" class="btn-close" (click)="showDialog = false"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="reason">Reason</label>
+          <textarea 
+            id="reason" 
+            class="form-control" 
+            [(ngModel)]="approvalDetails.reason" 
+            rows="3"
+            placeholder="Enter reason...">
+          </textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="showDialog = false">Cancel</button>
+        <button 
+          type="button" 
+          [class]="'btn ' + (approvalDetails.status === 'approved' ? 'btn-success' : 'btn-danger')"
+          (click)="submitApproval()"
+          [disabled]="!approvalDetails.reason">
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Backdrop -->
+<div class="modal-backdrop fade show" *ngIf="showDialog"></div>

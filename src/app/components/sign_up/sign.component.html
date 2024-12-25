@@ -1,0 +1,112 @@
+<div class="signup-container">
+  <div class="animated-background"></div>
+  <div class="particles"></div>
+  
+  <div class="signup-card" @fadeInOut>
+    <div class="logo-container">
+      <div class="logo-circle">
+        <i class="fas fa-user-plus"></i>
+      </div>
+    </div>
+    
+    <h2 class="signup-title">Create Account</h2>
+    
+    <form (ngSubmit)="onSignup()" class="signup-form" autocomplete="off">
+      <div class="form-group">
+        <div class="input-wrapper">
+          <i class="fas fa-user input-icon"></i>
+          <input
+            id="username"
+            name="username"
+            [(ngModel)]="username"
+            required
+            placeholder="Username"
+            type="text"
+            class="form-control"
+          />
+          <span class="focus-border"></span>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="input-wrapper">
+          <i class="fas fa-envelope input-icon"></i>
+          <input
+            id="email"
+            name="email"
+            [(ngModel)]="email"
+            required
+            placeholder="Email Address"
+            type="email"
+            class="form-control"
+          />
+          <span class="focus-border"></span>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="input-wrapper">
+          <i class="fas fa-lock input-icon"></i>
+          <input
+            type="password"
+            id="password"
+            [(ngModel)]="password"
+            name="password"
+            class="form-control"
+            required
+            placeholder="Password"
+          />
+          <span class="focus-border"></span>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="input-wrapper">
+          <i class="fas fa-briefcase input-icon"></i>
+          <select
+            id="role"
+            name="role"
+            class="form-control"
+            [(ngModel)]="role"
+            required
+          >
+            <option value="">Select Role</option>
+            <option value="doctor">Doctor</option>
+            <option value="student">Student</option>
+            <option value="manager">Manager</option>
+            <option value="staff">Staff</option>
+          </select>
+          <span class="focus-border"></span>
+        </div>
+      </div>
+      
+      <button
+        type="submit"
+        class="signup-btn"
+        [disabled]="isLoading"
+        [class.loading]="isLoading"
+      >
+        <span>{{ isLoading ? 'Creating Account...' : 'Sign Up' }}</span>
+        <div class="btn-particle-container" *ngIf="!isLoading">
+          <span class="particle"></span>
+          <span class="particle"></span>
+          <span class="particle"></span>
+        </div>
+      </button>
+      
+      <div *ngIf="errorMessage" class="error-message" [@shake]="shakeError">
+        {{ errorMessage }}
+      </div>
+    </form>
+    
+    <div class="login-link">
+      <p>
+        Already have an account? 
+        <button (click)="navigateToLogin()" class="login-button">
+          Login here
+          <span class="button-highlight"></span>
+        </button>
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mt-4">User Management</h1>
+
+      <!-- Add User Form -->
+      <div class="mb-4">
+        <button class="btn btn-primary" (click)="showAddUserForm = !showAddUserForm">Add New User</button>
+      </div>
+
+      <!-- Add User Form -->
+      <div *ngIf="showAddUserForm" class="mb-4">
+        <form (ngSubmit)="onAddUser()">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" [(ngModel)]="newUser.name" name="name" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" [(ngModel)]="newUser.email" name="email" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label for="role">Role</label>
+            <select id="role" [(ngModel)]="newUser.role" name="role" class="form-control" required>
+              <option value="admin">Admin</option>
+              <option value="user">User</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-success">Add User</button>
+        </form>
+      </div>
+
+      <!-- User List -->
+      <div class="card mt-4">
+        <div class="card-header">
+          User List
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>
+                  <button class="btn btn-warning btn-sm" (click)="onEditUser(user)">Edit</button>
+                  <button class="btn btn-danger btn-sm" (click)="onDeleteUser(user)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

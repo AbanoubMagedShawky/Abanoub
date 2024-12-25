@@ -1,0 +1,85 @@
+<!-- reports.component.html -->
+<div class="reports-container" @fadeIn>
+  <div class="reports-header">
+    <div class="title-section">
+      <h1>Monthly Bonus Reports</h1>
+      <p class="subtitle">{{ currentMonth }} {{ currentYear }}</p>
+    </div>
+
+    <!-- Search Section -->
+    <div class="search-section" @searchAnimation>
+      <div class="search-wrapper">
+        <i class="fas fa-search search-icon"></i>
+        <input 
+          type="text" 
+          [(ngModel)]="searchTerm" 
+          class="search-input" 
+          placeholder="Search reports..."
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-container" @fadeIn>
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p>Loading report data...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error" class="error-container" @fadeIn>
+    <div class="alert alert-danger">
+      <i class="fas fa-exclamation-circle me-2"></i>
+      {{ error }}
+      <button class="btn btn-link" (click)="retryLoad()">Try Again</button>
+    </div>
+  </div>
+
+  <!-- Report Content -->
+  <div class="report-content" *ngIf="!loading && !error" @fadeIn>
+    <!-- Summary Cards -->
+    <div class="summary-cards">
+      <div class="summary-card">
+        <div class="card-icon">
+          <i class="fas fa-money-bill-wave"></i>
+        </div>
+        <div class="card-content">
+          <h3>Total Bonus Amount</h3>
+          <p>{{ getTotalBonus() | currency }}</p>
+        </div>
+      </div>
+
+      <div class="summary-card">
+        <div class="card-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="card-content">
+          <h3>Total Recipients</h3>
+          <p>{{ getTotalCount() }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Report Table -->
+    <div class="report-table-container">
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Total Amount</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody @listAnimation>
+          <tr *ngFor="let report of reports | filter: searchTerm">
+            <td>{{ report._id }}</td>
+            <td>{{ report.totalAmount | currency }}</td>
+            <td>{{ report.count }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
